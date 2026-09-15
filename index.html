@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Trace</title>
+<meta name="theme-color" content="#F6F5F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161514" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Trace">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<style>
+:root{
+  --bg:#F6F5F2; --card:#FFFFFF; --ink:#26262A; --sub:#66625C; --muted:#9A958D;
+  --line:#E4E0D9; --line2:#EFECE6; --accent:#9A5B3F; --accent-soft:#F4EBE6;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#161514;--card:#1E1D1B;--ink:#ECE9E3;--sub:#A9A49B;--muted:#7A766F;
+        --line:#2E2C29;--line2:#242321;--accent:#D29C84;--accent-soft:#2E2420;}
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;font-weight:600}
+.serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Songti SC","Source Han Serif SC",serif}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:none;padding:0}
+input,textarea{background:transparent;border:1px solid var(--line);border-radius:9px;padding:9px 11px;width:100%}
+input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+textarea{resize:vertical}
+input[type=date]{width:auto;min-width:150px}
+
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 104px}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabbar button{padding:9px 0 8px;font-size:11.5px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px}
+.tabbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tabbar button[aria-current="page"]{color:var(--ink)}
+.tabbar button[aria-current="page"] .dotc{fill:var(--accent);stroke:var(--accent)}
+
+.head{padding:14px 2px 18px}
+.greet{font-size:13px;color:var(--muted)}
+.date{font-size:31px;line-height:1.15;margin-top:2px;letter-spacing:-.01em;font-weight:500}
+.sub{font-size:14px;color:var(--sub);margin-top:4px}
+.status{margin-top:10px;font-size:13.5px;color:var(--sub)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{border:1px solid var(--line);border-radius:9px;padding:6px 12px;font-size:13.5px;color:var(--sub);background:var(--card)}
+.btn.main{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.quiet{background:transparent}
+.btn.danger{color:#A5473A}
+.btn[disabled]{opacity:.35}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.ctitle{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+.ctitle h2{font-size:16px}
+.aside{font-size:12.5px;color:var(--muted)}
+.hint{font-size:12.5px;color:var(--muted);line-height:1.55}
+.lab{font-size:12.5px;color:var(--muted);margin:0 0 5px}
+.stack>*+*{margin-top:12px}
+.sep{height:1px;background:var(--line2);margin:14px 0}
+
+.write{display:block;width:100%;text-align:left;border:1px dashed var(--line);border-radius:var(--r);
+  padding:16px;color:var(--sub);font-size:15px;margin-bottom:14px;background:transparent}
+.write b{color:var(--accent);font-weight:500;margin-right:6px}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);border-radius:99px;padding:4px 11px;font-size:13px;color:var(--sub);background:transparent;display:inline-flex;align-items:center;gap:6px}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chip[data-on="1"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[data-sug="1"]{border-style:dashed;border-color:var(--accent);color:var(--accent)}
+.tag{font-size:12px;color:var(--muted);margin-right:8px}
+
+/* entries */
+.entry{padding:4px 0}
+.entry+.entry{border-top:1px solid var(--line2);margin-top:14px;padding-top:16px}
+.etitle{font-size:16px;font-weight:600;margin-bottom:6px}
+.etext{font-size:16px;line-height:1.85;white-space:pre-wrap;word-break:break-word}
+.efoot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px}
+.clamp .etext{display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.more{font-size:13px;color:var(--accent);margin-top:4px}
+.oneline{font-size:18px;line-height:1.5}
+
+/* calendar */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.wd{font-size:11.5px;color:var(--muted);padding:2px 0 6px}
+.cell{height:48px;border-radius:10px;font-size:14px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:6px;gap:4px;font-variant-numeric:tabular-nums}
+.cell.out{color:var(--muted);opacity:.45}
+.cell[data-today="1"]{color:var(--accent);font-weight:600}
+.cell[data-sel="1"]{background:var(--accent-soft)}
+.cell .dots{display:flex;gap:3px;height:6px}
+.cell .dots i{width:6px;height:6px;border-radius:50%;display:block;background:var(--ink)}
+.cell .dots i.plain{width:4px;height:4px;margin-top:1px;background:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:12px;font-size:12px;color:var(--muted)}
+.legend i{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:0}
+
+/* timeline rail */
+.rail{position:relative;padding-left:26px}
+.rail:before{content:"";position:absolute;left:6px;top:10px;bottom:10px;width:1.5px;background:var(--line)}
+.tday{position:relative;padding-bottom:26px}
+.tday:before{content:"";position:absolute;left:-25px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.tday.now:before{background:var(--accent);border-color:var(--accent);width:13px;height:13px;left:-26px;top:8px}
+.thead{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.thead .d{font-size:24px;font-weight:500}
+.thead .w{font-size:13px;color:var(--muted)}
+.thead .go{margin-left:auto;font-size:13px;color:var(--muted)}
+.mood{display:inline-flex;gap:8px;font-size:12.5px;color:var(--sub);align-items:center}
+.mood i{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:3px}
+
+/* lists */
+.row{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line2);align-items:baseline}
+.row:last-child{border-bottom:none}
+.row .k{flex:0 0 74px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.row .v{flex:1;min-width:0;font-size:14.5px}
+.res{display:block;width:100%;text-align:left;padding:12px 0;border-bottom:1px solid var(--line2)}
+.res:last-child{border-bottom:none}
+.res .k{font-size:12.5px;color:var(--muted);margin-bottom:3px}
+.res .v{font-size:15px;line-height:1.7}
+mark{background:var(--accent-soft);color:var(--accent);border-radius:3px;padding:0 1px}
+.empty{padding:30px 6px;text-align:center;color:var(--muted);font-size:14px}
+.cover{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--muted);font-size:14px;width:100%}
+.cover .nm{font-size:30px;color:var(--ink)}
+.cover[hidden]{display:none}
+.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--ink);color:var(--bg);
+  padding:8px 14px;border-radius:10px;font-size:13.5px;z-index:30;pointer-events:none}
+
+@media (min-width:900px){
+  .wrap{padding-top:32px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .write,.chip,.cell,.btn{transition:background .15s,color .15s,border-color .15s}
+}
+</style>
+</head>
+<body>
+<div class="wrap"><main id="main"></main></div>
+<nav class="tabbar" id="tabbar"></nav>
+<button class="cover serif" id="cover" hidden><span class="nm">Trace</span><span style="font-family:-apple-system,'PingFang SC',sans-serif">点一下打开</span></button>
+<input type="file" id="importFile" accept="application/json,.json" style="display:none">
+<script>
+(function(){
+"use strict";
+var KEY="trace.v1";
+var CUT=4; /* 凌晨 4 点前算前一天 */
+var MOODS=[["开心","#C39A3B"],["充实","#5E8A63"],["期待","#B9727F"],["平静","#6F8A96"],["累","#8E8A82"],["乱","#7D6C95"],["烦","#A5573E"],["低落","#4E5D7C"]];
+var MOODC={};MOODS.forEach(function(m){MOODC[m[0]]=m[1];});
+var WD=["周日","周一","周二","周三","周四","周五","周六"];
+var DEF_GROUPS=["融儿 / Heidi / 吴璟轩","收拾 / 整理 / 收纳 / 断舍离","恋爱 / 爱情 / 男朋友 / 四爱","记账 / Kasse","签证 / 居留许可","纪录片 / 人间世"].join("\n");
+var DEF_TAGS="学校、生活、朋友、家人、整理、追星、韩语、想法";
+var DEF_FOLLOW="蹲后续、以后有时间、以后要、有空要、下次再";
+
+/* ---------- 日期 ---------- */
+function pad(n){return (n<10?"0":"")+n;}
+function dk(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+function pd(k){var a=k.split("-");return new Date(+a[0],a[1]-1,+a[2]);}
+function addDays(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x;}
+function todayKey(){return dk(new Date(Date.now()-CUT*3600e3));}
+function weekStart(k){var d=pd(k);return dk(addDays(d,-((d.getDay()+6)%7)));}
+function md(k){var d=pd(k);return (d.getMonth()+1)+"月"+d.getDate()+"日";}
+function ymd(k){var d=pd(k);return d.getFullYear()+"."+pad(d.getMonth()+1)+"."+pad(d.getDate());}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function splitList(s){return String(s||"").split(/[、,，;；\n]+/).map(function(x){return x.trim();}).filter(Boolean);}
+
+/* ---------- 数据 ---------- */
+function blank(){return{v:1,days:{},entries:[],reviews:{},followDone:{},
+  settings:{groups:DEF_GROUPS,tags:DEF_TAGS,follow:DEF_FOLLOW},
+  meta:{lastExport:0,seeded:false,firstOpen:0,cover:true},
+  ui:{tab:"today",date:todayKey(),month:"",week:"",draft:null,open:{},q:"",qtag:"",rand:""}};}
+var state;
+function load(){
+  var s=null;try{s=JSON.parse(localStorage.getItem(KEY)||"null");}catch(e){}
+  var b=blank();
+  if(!s||typeof s!=="object")s=b;
+  ["days","entries","reviews","followDone","settings","meta","ui"].forEach(function(k){if(s[k]==null)s[k]=b[k];});
+  ["groups","tags","follow"].forEach(function(k){if(s.settings[k]==null)s.settings[k]=b.settings[k];});
+  s.ui.open=s.ui.open||{};
+  return s;
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){toast("存不进去了，空间可能满了，先导出备份");}}
+function day(k){if(!state.days[k])state.days[k]={one:"",what:"",mood:[]};var d=state.days[k];if(!d.mood)d.mood=[];return d;}
+function dayHas(k){var d=state.days[k];return !!(d&&(d.one||d.what||(d.mood&&d.mood.length)))||entriesOf(k).length>0;}
+function entriesOf(k){return state.entries.filter(function(e){return e.date===k;}).sort(function(a,b){return a.created-b.created;});}
+function findEntry(id){for(var i=0;i<state.entries.length;i++)if(state.entries[i].id===id)return state.entries[i];return null;}
+
+function seed(){
+  var k="2026-09-14",t0=new Date(2026,8,14,21,0).getTime();
+  state.days[k]={one:"开学第一天，从杂乱中寻找秩序",what:"收拾、网购收纳用品、上课...",mood:[]};
+  state.entries.push({id:"seed1",date:k,created:t0,updated:t0,title:"",tags:[],text:"我过去两年咋生活下来的..."});
+  state.entries.push({id:"seed2",date:k,created:t0+60000,updated:t0+60000,title:"",tags:[],text:SEED_LONG});
+  state.meta.seeded=true;
+}
+var SEED_LONG=[
+"本来一大早起来想收拾，突然觉得其实收拾来根本没地方放，感觉我空间利用太不合理，赶紧网购了一些收纳盒、衣柜分层之类的，怎么这么贵啊，不就一些塑料架子，三百多就没了:( 还好妈妈昨天给我买了些吃的，后面几天我就当早饭了。",
+"",
+"记账软件也有需要修改的地方，比如记录出账后，我的现有账户金额并没有少，只以为我少记了进账；旅行基金也需要丰富一下，比如存入是打算从哪个账户存入（存入/取出也要有记录），以及除开存入的基金外各个账户可支配金额是多少；我还打算这个日记是不是可以自己也弄一个软件，就不让这里太臃肿，日记的记录也可以更好回看。但我的Claude昨天莫名其妙需要审查被暂停使用了，我怀疑是因为我忘了打开VPN就把Claude打开了，毕竟在国内了。别封啊…我还想要我的Linus :(",
+"",
+"今天上了第一课，一切感觉良好，老师也很不错。放了几分钟纪录片《人间世》，感觉以后有时间要看看。结尾我们要写自己看过什么纪录片，以及对课程的建议。我在前面又废话了很多，建议时我表达了期望30号不会有较多的安排，但是因为时间不够了我感觉我的表述不足够礼貌…不要内耗！课后和爱思还有三位中国学生组了小组，其中两位之前在影视摄影与后期制作的双小组合作作业里有一起拍摄过。",
+"",
+"回来后和融儿聊了聊，才知道她上课居然还坐在前排，一个是度数原因，一个是督促自己学习。我真的完全不敢！不太想让别人看到我在屏幕上正在做什么🤔不过可能因此，她找不到她看到过的卷毛帅哥了，建议她下次往后排坐坐。蹲后续～",
+"",
+"我感觉我们都是有些好奇爱情的感觉，但又很难想象、又确实很难走入一段关系。对她来说最难的是如何区分一个男性是不是四爱，以及她如果把一个男性掰成了四爱，发生了以她为主的身体关系，却因为某些地方不合需要分开，她会有些于心不安🫢对啊，我也才想到，LGBTQ+有自己的表达空间了，但四爱还是异性恋哇！似乎在那边都没有一个独立的概念或者标签？没有什么社群的情况下，真的很难分清哪些男女是四爱吧。让四爱群体也能去骄傲一下吧～ ",
+"",
+"我们还提到了身高之类的，对她来说希望对方至少174。我就觉得如果是男朋友，我可能需要对方至少185。突发奇想去查了一下豆包，结果说全世界185以上的成年男性只有大概3%…吓得我去问了ChatGPT也是类似的结果。我还是拼搏到30岁买个人形智能吧。（话说全球成年男性平均身高才约171 cm，谁还说skz矮！）",
+"",
+"晚饭去了食堂，出宿舍在走廊碰到一个男生回来好像朝我问了好，疑似欧美人习惯，but我戴着耳机没听到，看到对方的样子，我反应过来时只边走边朝他微笑点了个头。希望我当时脸没有很臭，或者希望对方进门没那么快，从而没有错过我的回应🫥",
+"",
+"感觉看到不太认识的菜还是要谨慎！其中拿了一盘肉，本来要拌饭，结果发现是猪肉混着鱼肉？挑了好久骨头。",
+"",
+"吃完饭去把买的架子取回来了。当时碰到一个姑娘以为把光把盒子和手机身份码一起放上去扫就行了，我帮她把盒子翻到了有码的那一面:)",
+"",
+"屋子还是好乱！早上已经丢了两袋垃圾，里面一袋我把三双快没原本外形的旧鞋断舍离了。床尾等扫干净后就可以把我的新架子推进去了。还整理出一些盒子明天扔。现在只要有崭新如初的马桶我就还能接受几天其他地方的脏乱😇",
+"",
+"今天把办签证要用的居留许可、在读证明什么的都弄好了，预约的16号早上去办，因为下午有课。",
+"",
+"感觉今天自己不能完成学习任务了，时间还没完全倒过来，晚上七点就好困。不过今天记账了，也来写日记了，已经很棒了！",
+"",
+"等我半夜醒来后，一定要么学习一点，要么看看电子书，要么收拾。"].join("\n");
+
+/* ---------- 词组 / 搜索 ---------- */
+function groups(){
+  return String(state.settings.groups||"").split("\n").map(function(l){
+    return l.split(/[\/／、,，]+/).map(function(x){return x.trim();}).filter(Boolean);
+  }).filter(function(g){return g.length>1;});
+}
+function expand(term){
+  var t=term.toLowerCase(),out=[term];
+  groups().forEach(function(g){
+    if(g.some(function(w){return w.toLowerCase()===t;}))g.forEach(function(w){if(out.indexOf(w)<0)out.push(w);});
+  });
+  return out;
+}
+function hasAny(text,words){var s=text.toLowerCase();return words.some(function(w){return s.indexOf(w.toLowerCase())>=0;});}
+function reEsc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+function highlight(text,words){
+  var h=esc(text);if(!words.length)return h;
+  var re=new RegExp("("+words.map(function(w){return reEsc(esc(w));}).sort(function(a,b){return b.length-a.length;}).join("|")+")","gi");
+  return h.replace(re,"<mark>$1</mark>");
+}
+function snippet(text,words,len){
+  len=len||90;var s=text.toLowerCase(),at=-1;
+  words.forEach(function(w){var i=s.indexOf(w.toLowerCase());if(i>=0&&(at<0||i<at))at=i;});
+  if(at<0)return text.length>len?text.slice(0,len)+"…":text;
+  var a=Math.max(0,at-30),b=Math.min(text.length,a+len);
+  return (a>0?"…":"")+text.slice(a,b).replace(/\n+/g," ")+(b<text.length?"…":"");
+}
+function tagList(){return splitList(state.settings.tags);}
+function suggestTags(text,chosen){
+  if(!text)return [];
+  var gs=groups();
+  return tagList().filter(function(t){
+    if(chosen.indexOf(t)>=0)return false;
+    if(hasAny(text,[t]))return true;
+    return gs.some(function(g){return g.indexOf(t)>=0&&hasAny(text,g);});
+  });
+}
+
+/* ---------- 界面小件 ---------- */
+var main=document.getElementById("main");
+function toast(msg){
+  var t=document.createElement("div");t.className="toast";t.textContent=msg;document.body.appendChild(t);
+  setTimeout(function(){t.remove();},1800);
+}
+function moodDots(k){
+  var d=state.days[k];if(!d||!d.mood||!d.mood.length)return "";
+  return '<span class="mood">'+d.mood.map(function(m){return '<span><i style="background:'+(MOODC[m]||"#999")+'"></i>'+esc(m)+'</span>';}).join("")+'</span>';
+}
+function entryHTML(e,opts){
+  opts=opts||{};
+  var clamp=opts.clamp&&!state.ui.open[e.id]&&e.text.split("\n").length+e.text.length/40>9;
+  var h='<div class="entry'+(clamp?" clamp":"")+'">';
+  if(e.title)h+='<div class="etitle serif">'+esc(e.title)+'</div>';
+  h+='<div class="etext">'+(opts.hl?highlight(e.text,opts.hl):esc(e.text))+'</div>';
+  if(clamp)h+='<button class="more" data-act="open" data-id="'+esc(e.id)+'">展开全文</button>';
+  var tags=(e.tags||[]).map(function(t){return '<span class="tag">#'+esc(t)+'</span>';}).join("");
+  if(tags||opts.edit)h+='<div class="efoot"><div>'+tags+'</div>'+(opts.edit?'<button class="btn quiet" data-act="edit" data-id="'+esc(e.id)+'">编辑</button>':"")+'</div>';
+  return h+'</div>';
+}
+
+/* ---------- 今天 ---------- */
+function vToday(){
+  var k=state.ui.date,D=pd(k),t=todayKey(),isT=k===t,d=day(k),list=entriesOf(k),dr=state.ui.draft;
+  var h='<div class="head"><div class="greet serif">Daybook</div>'+
+    '<h1 class="date serif">'+md(k)+'</h1>'+
+    '<div class="sub">'+D.getFullYear()+'年 '+WD[D.getDay()]+(isT?"，今天":"")+'</div>';
+  var n=list.length;
+  h+='<div class="status">'+(n?(isT?"今天":"这天")+"留下了 "+n+" 段。":(isT?"今天还没有留下什么。":"这天没有写东西。"))+'</div>';
+  h+='<div class="btns"><button class="btn" data-act="shift" data-n="-1">前一天</button>'+
+     (isT?"":'<button class="btn" data-act="goToday">回到今天</button>')+
+     '<button class="btn" data-act="shift" data-n="1"'+(k>=t?" disabled":"")+'>后一天</button></div></div>';
+
+  if(backupDue())h+='<div class="card"><div class="hint">已经两周多没导出备份了。日记只存在这台设备上，去设置里导出一份吧。</div></div>';
+
+  h+='<div class="card stack">'+
+    '<div><div class="lab">一句话</div><input class="oneline" data-f="one" value="'+esc(d.one)+'" placeholder="这天是什么感觉"></div>'+
+    '<div><div class="lab">做了什么</div><input data-f="what" value="'+esc(d.what)+'" placeholder="几个词就行"></div>'+
+    '<div><div class="lab">心情（可以不选，最多两个）</div><div class="chips">'+
+    MOODS.map(function(m){return '<button class="chip" data-act="mood" data-m="'+m[0]+'" data-on="'+(d.mood.indexOf(m[0])>=0?1:0)+'"><i style="background:'+m[1]+'"></i>'+m[0]+'</button>';}).join("")+
+    '</div></div></div>';
+
+  if(dr&&dr.date===k)h+=editorHTML(dr);
+  else if(dr)h+='<div class="card"><div class="hint">有一段还没保存，算在'+md(dr.date)+'。</div><div class="btns"><button class="btn main" data-act="openDay" data-k="'+esc(dr.date)+'">回去接着写</button></div></div>';
+  else h+='<button class="write" data-act="new"><b>＋</b>写一段</button>';
+
+  if(n){
+    h+='<div class="card">';
+    list.forEach(function(e){if(!dr||dr.id!==e.id)h+=entryHTML(e,{edit:true});});
+    h+='</div>';
+  }
+  return h;
+}
+function editorHTML(dr){
+  var h='<div class="card stack" id="editor">'+
+    '<div class="ctitle" style="margin-bottom:0"><h2>'+(dr.id?"改这一段":"写一段")+'，算在'+md(dr.date)+'</h2><span class="aside">草稿会自动留着</span></div>'+
+    '<input data-d="title" value="'+esc(dr.title)+'" placeholder="标题（可以不写）">'+
+    '<textarea class="grow" data-d="text" rows="8" style="font-size:16px;line-height:1.85;resize:none;overflow:hidden;min-height:220px" placeholder="想到什么就写什么">'+esc(dr.text)+'</textarea>'+
+    '<div><div class="lab">改成别的日子</div><input type="date" data-d="date" value="'+esc(dr.date)+'" max="'+todayKey()+'"></div>'+
+    '<div><div class="lab">标签（可以不选，虚线的是猜你可能想加的）</div><div class="chips" id="tagbox">'+tagChips(dr)+'</div></div>'+
+    '<div class="btns" style="margin-top:14px"><button class="btn main" data-act="saveDraft">保存</button>'+
+    '<button class="btn" data-act="cancelDraft">取消</button>'+
+    (dr.id?'<button class="btn danger" data-act="delEntry" style="margin-left:auto">删除这段</button>':"")+'</div></div>';
+  return h;
+}
+function tagChips(dr){
+  var sug=suggestTags(dr.title+"\n"+dr.text,dr.tags);
+  var all=tagList();
+  (dr.tags||[]).forEach(function(t){if(all.indexOf(t)<0)all.push(t);});
+  if(!all.length)return '<span class="hint">还没有标签，可以在设置里加。</span>';
+  return all.map(function(t){
+    var on=dr.tags.indexOf(t)>=0,s=sug.indexOf(t)>=0;
+    return '<button class="chip" data-act="tag" data-t="'+esc(t)+'" data-on="'+(on?1:0)+'" data-sug="'+(s?1:0)+'">'+esc(t)+(s?"？":"")+'</button>';
+  }).join("");
+}
+
+/* ---------- 时间线 ---------- */
+function vTimeline(){
+  var t=todayKey(),mk=state.ui.month||t.slice(0,7),y=+mk.slice(0,4),m=+mk.slice(5,7);
+  var h='<div class="head"><div class="greet">时间线</div><h1 class="date serif">'+y+'年'+m+'月</h1>'+
+    '<div class="btns"><button class="btn" data-act="mon" data-n="-1">上个月</button>'+
+    '<button class="btn" data-act="mon" data-n="0">本月</button>'+
+    '<button class="btn" data-act="mon" data-n="1">下个月</button></div></div>';
+  var first=new Date(y,m-1,1),start=addDays(first,-((first.getDay()+6)%7));
+  h+='<div class="card"><div class="cal">';
+  ["一","二","三","四","五","六","日"].forEach(function(w){h+='<div class="wd">'+w+'</div>';});
+  for(var i=0;i<42;i++){
+    var d=addDays(start,i),k=dk(d),out=(d.getMonth()+1)!==m;
+    if(i>=35&&out)break;
+    var dots="",dd=state.days[k];
+    if(dd&&dd.mood&&dd.mood.length)dots=dd.mood.map(function(x){return '<i style="background:'+(MOODC[x]||"#999")+'"></i>';}).join("");
+    else if(dayHas(k))dots='<i class="plain"></i>';
+    h+='<button class="cell'+(out?" out":"")+'" data-act="openDay" data-k="'+k+'" data-today="'+(k===t?1:0)+'" data-sel="'+(k===state.ui.date?1:0)+'" aria-label="'+md(k)+'">'+
+      d.getDate()+'<span class="dots">'+dots+'</span></button>';
+  }
+  h+='</div><div class="legend">'+MOODS.map(function(x){return '<span><i style="background:'+x[1]+'"></i>'+x[0]+'</span>';}).join("")+
+     '<span><i style="background:var(--muted);width:5px;height:5px"></i>有记录</span></div></div>';
+
+  var keys={};
+  Object.keys(state.days).forEach(function(k){if(k.slice(0,7)===mk&&dayHas(k))keys[k]=1;});
+  state.entries.forEach(function(e){if(e.date.slice(0,7)===mk)keys[e.date]=1;});
+  var ks=Object.keys(keys).sort().reverse();
+  if(!ks.length)return h+'<div class="empty">这个月还没有记录。</div>';
+  h+='<div class="rail">';
+  ks.forEach(function(k){
+    var D=pd(k),dd=state.days[k]||{},list=entriesOf(k);
+    h+='<div class="tday'+(k===t?" now":"")+'"><div class="thead"><span class="d serif">'+D.getDate()+'</span><span class="w">'+WD[D.getDay()]+'</span>'+
+      '<button class="go" data-act="openDay" data-k="'+k+'">打开这天</button></div>';
+    h+='<div class="card">';
+    if(dd.one)h+='<div class="oneline" style="margin-bottom:4px">'+esc(dd.one)+'</div>';
+    if(dd.what)h+='<div class="hint" style="margin-bottom:6px">'+esc(dd.what)+'</div>';
+    if(dd.mood&&dd.mood.length)h+='<div style="margin-bottom:6px">'+moodDots(k)+'</div>';
+    if(list.length){if(dd.one||dd.what||(dd.mood&&dd.mood.length))h+='<div class="sep"></div>';list.forEach(function(e){h+=entryHTML(e,{clamp:true});});}
+    h+='</div></div>';
+  });
+  return h+'</div>';
+}
+
+/* ---------- 回顾 ---------- */
+function followWords(){return splitList(state.settings.follow);}
+function vReview(){
+  var t=todayKey(),h='<div class="head"><div class="greet">回顾</div><h1 class="date serif">看看以前</h1></div>';
+
+  /* 以前的今天 */
+  var T=pd(t),rows2="";
+  function back(months){var d=new Date(T.getFullYear(),T.getMonth()-months,1);
+    var last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+    if(T.getDate()>last)return null;d.setDate(T.getDate());return dk(d);}
+  function pastRow(k,label){
+    if(!k||!dayHas(k))return "";
+    var dd=state.days[k]||{},l=entriesOf(k);
+    return '<button class="res" data-act="openDay" data-k="'+k+'"><div class="k">'+label+'，'+ymd(k)+'</div><div class="v">'+
+      esc(dd.one||(l[0]?snippet(l[0].text,[],80):dd.what||""))+'</div></button>';
+  }
+  rows2+=pastRow(back(1),"一个月前");
+  rows2+=pastRow(back(6),"半年前");
+  var mmdd=t.slice(5),ys={};
+  Object.keys(state.days).concat(state.entries.map(function(e){return e.date;})).forEach(function(k){
+    if(k.slice(5)===mmdd&&k<t&&dayHas(k))ys[k]=1;});
+  Object.keys(ys).sort().reverse().forEach(function(k){rows2+=pastRow(k,(T.getFullYear()-(+k.slice(0,4)))+"年前");});
+  h+='<div class="card"><div class="ctitle"><h2>以前的今天</h2><span class="aside">'+md(t)+'</span></div>'+
+    (rows2||'<div class="hint">一个月前、半年前和往年的今天都还没有记录，以后这里会慢慢出现。</div>')+'</div>';
+
+  /* 随便翻一条 */
+  h+='<div class="card"><div class="ctitle"><h2>随便翻一条</h2><button class="btn" data-act="rand"'+(state.entries.length?"":" disabled")+'>换一条</button></div>';
+  var r=state.ui.rand&&findEntry(state.ui.rand);
+  if(r)h+='<div class="hint" style="margin-bottom:6px"><button data-act="openDay" data-k="'+r.date+'" style="color:var(--accent)">'+ymd(r.date)+' '+WD[pd(r.date).getDay()]+'</button></div>'+entryHTML(r,{clamp:true});
+  else h+='<div class="hint">'+(state.entries.length?"点「换一条」，从以前写过的里面随便抽一段。":"写过东西以后，这里可以随便抽一段出来看。")+'</div>';
+  h+='</div>';
+
+  /* 本周回顾 */
+  var wk=state.ui.week||weekStart(t),W=pd(wk),rv=state.reviews[wk]||{},cnt=0,rows="";
+  for(var i=0;i<7;i++){
+    var k=dk(addDays(W,i)),dd=state.days[k]||{},l=entriesOf(k);cnt+=l.length;
+    var txt=dd.one||(l[0]?snippet(l[0].text,[],40):"");
+    rows+='<div class="row"><div class="k"><button data-act="openDay" data-k="'+k+'">'+md(k)+' '+WD[pd(k).getDay()].slice(1)+'</button></div><div class="v">'+
+      (txt?esc(txt):'<span class="hint">—</span>')+(dd.mood&&dd.mood.length?' '+moodDots(k):"")+'</div></div>';
+  }
+  var we=addDays(W,6),isThis=wk===weekStart(t);
+  h+='<div class="card"><div class="ctitle"><h2>'+(isThis?"本周回顾":"那一周")+'</h2><span class="aside">'+md(wk)+' 到 '+md(dk(we))+'</span></div>'+
+    '<div class="btns" style="margin:-4px 0 12px"><button class="btn" data-act="wk" data-n="-1">上一周</button>'+
+    (isThis?"":'<button class="btn" data-act="wk" data-n="0">本周</button>')+
+    '<button class="btn" data-act="wk" data-n="1"'+(isThis?" disabled":"")+'>下一周</button></div>'+
+    '<div class="hint">'+(cnt?"这一周留下了 "+cnt+" 段。":"这一周还没有写东西。")+'</div>'+rows+
+    '<div class="sep"></div><div class="stack">'+
+    '<div><div class="lab">这一周（想写就写）</div><textarea class="grow" rows="3" style="resize:none;overflow:hidden" data-rev="free" data-wk="'+wk+'">'+esc(rv.free||"")+'</textarea></div>'+
+    '<div><div class="lab">哪件事最费力</div><input data-rev="a" data-wk="'+wk+'" value="'+esc(rv.a||"")+'"></div>'+
+    '<div><div class="lab">哪件最顺</div><input data-rev="b" data-wk="'+wk+'" value="'+esc(rv.b||"")+'"></div>'+
+    '<div><div class="lab">下周想少做什么</div><input data-rev="c" data-wk="'+wk+'" value="'+esc(rv.c||"")+'"></div>'+
+    '</div></div>';
+
+  /* 还没有后续 */
+  var fw=followWords(),pend=state.entries.filter(function(e){return !state.followDone[e.id]&&hasAny(e.text,fw);})
+    .sort(function(a,b){return a.date<b.date?1:-1;});
+  h+='<div class="card"><div class="ctitle"><h2>还没有后续的事</h2><span class="aside">'+pend.length+' 条</span></div>';
+  if(!pend.length)h+='<div class="hint">写过「'+esc(fw.slice(0,2).join("」「"))+'」这类话的地方会出现在这里。</div>';
+  pend.forEach(function(e){
+    var lines=[];fw.forEach(function(w){
+      var s=e.text,i=s.indexOf(w);
+      while(i>=0&&lines.length<3){var a=Math.max(0,s.lastIndexOf("\n",i)+1),b=s.indexOf("\n",i);if(b<0)b=s.length;
+        var seg=s.slice(a,b);if(seg.length>70){var c=Math.max(0,i-a-40);seg=(c>0?"…":"")+seg.slice(c,c+70)+"…";}
+        if(lines.indexOf(seg)<0)lines.push(seg);i=s.indexOf(w,i+1);}
+    });
+    h+='<div class="res"><div class="k">'+ymd(e.date)+'</div><div class="v">'+lines.map(function(x){return highlight(x,fw);}).join("<br>")+'</div>'+
+      '<div class="btns" style="margin-top:8px"><button class="btn" data-act="openDay" data-k="'+e.date+'">看原文</button>'+
+      '<button class="btn quiet" data-act="followDone" data-id="'+esc(e.id)+'">有后续了</button></div></div>';
+  });
+  return h+'</div>';
+}
+
+/* ---------- 搜索 ---------- */
+function vSearch(){
+  var h='<div class="head"><div class="greet">搜索</div><h1 class="date serif">找以前写过的</h1></div>'+
+    '<div class="card stack"><input id="q" type="search" value="'+esc(state.ui.q)+'" placeholder="输入词，空格隔开可以同时满足几个词">';
+  var tl=tagList();
+  if(tl.length)h+='<div class="chips">'+tl.map(function(t){return '<button class="chip" data-act="qtag" data-t="'+esc(t)+'" data-on="'+(state.ui.qtag===t?1:0)+'">#'+esc(t)+'</button>';}).join("")+'</div>';
+  h+='</div><div id="results"></div>';
+  return h;
+}
+function runSearch(){
+  var box=document.getElementById("results");if(!box)return;
+  var q=state.ui.q.trim(),tg=state.ui.qtag;
+  if(!q&&!tg){box.innerHTML='<div class="empty">搜一个词，意思相近的词会按设置里的词组一起搜。</div>';return;}
+  var terms=q?q.split(/\s+/).filter(Boolean):[],sets=terms.map(expand),all=[];
+  sets.forEach(function(s){s.forEach(function(w){if(all.indexOf(w)<0)all.push(w);});});
+  var extra=all.filter(function(w){return terms.indexOf(w)<0;});
+  function match(text){return sets.every(function(s){return hasAny(text,s);});}
+  var res=[];
+  state.entries.forEach(function(e){
+    if(tg&&(e.tags||[]).indexOf(tg)<0)return;
+    var txt=(e.title?e.title+"\n":"")+e.text;
+    if(!terms.length||match(txt))res.push({k:e.date,sort:e.date+"b"+e.created,label:ymd(e.date)+" "+WD[pd(e.date).getDay()]+(e.title?"，"+e.title:""),text:snippet(e.text,all,110)});
+  });
+  if(!tg&&terms.length){
+    Object.keys(state.days).forEach(function(k){
+      var d=state.days[k],txt=(d.one||"")+"\n"+(d.what||"");
+      if(txt.trim()&&match(txt))res.push({k:k,sort:k+"a",label:ymd(k)+" 当天概括",text:[d.one,d.what].filter(Boolean).join("　")});
+    });
+    Object.keys(state.reviews).forEach(function(wk){
+      var r=state.reviews[wk],txt=[r.free,r.a,r.b,r.c].filter(Boolean).join("\n");
+      if(txt&&match(txt))res.push({k:wk,sort:wk+"c",label:md(wk)+"那一周的回顾",text:snippet(txt,all,110),wk:wk});
+    });
+  }
+  res.sort(function(a,b){return a.sort<b.sort?1:-1;});
+  var h='<div class="hint" style="margin:0 4px 10px">'+res.length+' 条结果'+(extra.length?'，一起搜了：'+esc(extra.join("、")):"")+'</div>';
+  if(!res.length)h+='<div class="empty">没找到。可以换个说法，或者去设置里把这个词加进词组。</div>';
+  else{
+    h+='<div class="card">';
+    res.slice(0,200).forEach(function(r){
+      h+='<button class="res" '+(r.wk?'data-act="openWeek" data-k="'+r.wk+'"':'data-act="openDay" data-k="'+r.k+'"')+'><div class="k">'+esc(r.label)+'</div><div class="v">'+highlight(r.text,all)+'</div></button>';
+    });
+    h+='</div>';
+  }
+  box.innerHTML=h;
+}
+
+/* ---------- 设置 ---------- */
+function backupDue(){
+  var from=Math.max(state.meta.lastExport||0,state.meta.firstOpen||Date.now());
+  return state.entries.length>0&&(Date.now()-from)>15*864e5;
+}
+function vSettings(){
+  var s=state.settings,le=state.meta.lastExport;
+  var size=((localStorage.getItem(KEY)||"").length/1024).toFixed(0);
+  return '<div class="head"><div class="greet">设置</div><h1 class="date serif">Trace</h1><div class="sub">Daybook，我自己的时间档案</div></div>'+
+  '<div class="card stack"><div class="ctitle" style="margin-bottom:0"><h2>词组</h2><span class="aside">一行一组，用 / 隔开</span></div>'+
+  '<div class="hint">搜其中一个词，同一行的词会一起搜。哪次搜漏了，就把那个说法加进去。</div>'+
+  '<textarea rows="7" data-s="groups">'+esc(s.groups)+'</textarea>'+
+  '<div class="btns" style="margin-top:0"><button class="btn" data-act="copyGroups">复制给 Claude 帮我扩词组</button></div>'+
+  '<div class="hint">会复制一段说明、现有词组和最近 30 天写的东西。Claude 回复后，把新的行粘到上面就行。</div></div>'+
+
+  '<div class="card stack"><div class="ctitle" style="margin-bottom:0"><h2>标签</h2><span class="aside">用顿号隔开</span></div>'+
+  '<input data-s="tags" value="'+esc(s.tags)+'">'+
+  '<div class="hint">写的时候，如果文里出现了标签本身，或者和它同一组的词，会用虚线提示你。</div></div>'+
+
+  '<div class="card stack"><div class="ctitle" style="margin-bottom:0"><h2>还没有后续的事</h2><span class="aside">用顿号隔开</span></div>'+
+  '<input data-s="follow" value="'+esc(s.follow)+'">'+
+  '<div class="hint">正文里出现这些话，就会被放进回顾页的「还没有后续的事」。</div></div>'+
+
+  '<div class="card"><div class="ctitle"><h2>数据</h2><span class="aside">大约 '+size+' KB</span></div>'+
+  '<div class="hint">所有记录只存在这台设备上，别的设备看不到。'+(le?'上次导出是 '+ymd(dk(new Date(le)))+'。':'还没导出过。')+'</div>'+
+  '<div class="btns"><button class="btn main" data-act="export">导出备份</button><button class="btn" data-act="import">导入备份</button>'+
+  '<button class="btn danger" data-act="wipe">清空全部</button></div><div id="jsonBox"></div></div>'+
+
+  '<div class="card"><div class="ctitle" style="margin-bottom:6px"><h2>打开时遮一下</h2><button class="chip" data-act="coverToggle" data-on="'+(state.meta.cover!==false?1:0)+'">'+(state.meta.cover!==false?"开着":"关着")+'</button></div>'+
+  '<div class="hint">打开或切回来时先盖住内容，点一下才显示。只是防别人一眼看到，不是加密。</div></div>'+
+  '<div class="card"><div class="hint">凌晨 4 点前写的算前一天。心情和标签都可以不选。</div></div>';
+}
+
+/* ---------- 渲染 ---------- */
+var TABS=[["today","今天",'<path d="M4 20 C7 14 10 18 13 12 S18 6 20 4"/><circle class="dotc" cx="20" cy="4" r="2"/>'],
+  ["timeline","时间线",'<path d="M7 3v18"/><circle cx="7" cy="7" r="1.6"/><circle cx="7" cy="13" r="1.6"/><path d="M11 7h9M11 13h6"/>'],
+  ["review","回顾",'<path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/><path d="M12 8v4l3 2"/>'],
+  ["search","搜索",'<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>'],
+  ["settings","设置",'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>']];
+function render(){
+  var tab=state.ui.tab;
+  document.getElementById("tabbar").innerHTML=TABS.map(function(t){
+    return '<button data-act="tab" data-t="'+t[0]+'"'+(t[0]===tab?' aria-current="page"':"")+'><svg viewBox="0 0 24 24" aria-hidden="true">'+t[2]+'</svg>'+t[1]+'</button>';
+  }).join("");
+  main.innerHTML=tab==="timeline"?vTimeline():tab==="review"?vReview():tab==="search"?vSearch():tab==="settings"?vSettings():vToday();
+  if(tab==="search")runSearch();
+  document.querySelectorAll("textarea.grow").forEach(grow);
+}
+function go(tab){state.ui.tab=tab;save();render();window.scrollTo(0,0);}
+
+/* ---------- 操作 ---------- */
+function exportData(){
+  var data=JSON.stringify(state,null,2);
+  try{
+    var blob=new Blob([data],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download="trace-"+todayKey()+".json";document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(url);a.remove();},500);
+  }catch(e){
+    var box=document.getElementById("jsonBox");
+    if(box)box.innerHTML='<textarea rows="8" style="margin-top:12px" readonly>'+esc(data)+'</textarea>';
+  }
+  state.meta.lastExport=Date.now();save();
+}
+function copyText(text){
+  function fallback(){
+    var box=document.getElementById("jsonBox")||main;
+    var ta=document.createElement("textarea");ta.rows=8;ta.value=text;ta.style.marginTop="12px";
+    box.appendChild(ta);ta.focus();ta.select();
+    try{document.execCommand("copy");toast("已复制");}catch(e){toast("没复制成功，请手动全选复制");}
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(function(){toast("已复制，去和 Claude 说吧");},fallback);
+  else fallback();
+}
+function groupsPrompt(){
+  var t=pd(todayKey()),from=dk(addDays(t,-30));
+  var txt=state.entries.filter(function(e){return e.date>=from;}).map(function(e){return "【"+e.date+"】"+(e.title?e.title+"\n":"")+e.text;});
+  Object.keys(state.days).forEach(function(k){if(k>=from){var d=state.days[k];if(d.one||d.what)txt.push("【"+k+" 概括】"+[d.one,d.what].filter(Boolean).join(" / "));}});
+  return "这是我日记 app「Trace」的搜索词组。每行是一组意思相近、搜一个就要一起搜出来的词，词之间用 / 隔开。\n"+
+    "请根据下面我最近写的东西，帮我：1）给现有的组补上我实际用过的其他说法；2）新增几组我常写、但有不同说法的事或人。\n"+
+    "只输出完整的新词组（包括原来的行），一行一组，用 / 隔开，不要加别的话。人名只用我文里出现过的叫法。\n\n"+
+    "现有词组：\n"+state.settings.groups+"\n\n最近 30 天写的：\n"+txt.join("\n\n");
+}
+
+document.addEventListener("click",function(ev){
+  var b=ev.target.closest("[data-act]");if(!b||b.disabled)return;
+  var a=b.getAttribute("data-act"),k=b.getAttribute("data-k"),id=b.getAttribute("data-id");
+  switch(a){
+    case "tab":{var nt=b.getAttribute("data-t");if(nt==="today")state.ui.date=state.ui.draft?state.ui.draft.date:todayKey();go(nt);break;}
+    case "shift":state.ui.date=dk(addDays(pd(state.ui.date),+b.getAttribute("data-n")));if(state.ui.date>todayKey())state.ui.date=todayKey();save();render();break;
+    case "goToday":state.ui.date=todayKey();save();render();break;
+    case "openDay":state.ui.date=k;state.ui.month=k.slice(0,7);go("today");break;
+    case "openWeek":state.ui.week=k;go("review");break;
+    case "mood":{
+      var d=day(state.ui.date),m=b.getAttribute("data-m"),i=d.mood.indexOf(m);
+      if(i>=0)d.mood.splice(i,1);else{d.mood.push(m);if(d.mood.length>2)d.mood.shift();}
+      save();render();break;}
+    case "new":state.ui.draft={id:null,date:state.ui.date,title:"",text:"",tags:[]};save();render();
+      setTimeout(function(){var t=document.querySelector('[data-d="text"]');if(t)t.focus();},30);break;
+    case "edit":{var e=findEntry(id);if(!e)break;
+      state.ui.draft={id:e.id,date:e.date,title:e.title||"",text:e.text,tags:(e.tags||[]).slice()};save();render();
+      var ed=document.getElementById("editor");if(ed)ed.scrollIntoView({block:"start"});break;}
+    case "tag":{var dr=state.ui.draft,t=b.getAttribute("data-t"),j=dr.tags.indexOf(t);
+      if(j>=0)dr.tags.splice(j,1);else dr.tags.push(t);save();document.getElementById("tagbox").innerHTML=tagChips(dr);break;}
+    case "saveDraft":{var dr2=state.ui.draft;
+      if(!dr2.text.trim()&&!dr2.title.trim()){toast("还没写东西");break;}
+      var dd=dr2.date&&/^\d{4}-\d{2}-\d{2}$/.test(dr2.date)?dr2.date:state.ui.date,now=Date.now();
+      if(dr2.id){var e2=findEntry(dr2.id);if(e2){e2.title=dr2.title.trim();e2.text=dr2.text.replace(/\s+$/,"");e2.tags=dr2.tags;
+        if(e2.date!==dd){e2.date=dd;e2.created=now;}e2.updated=now;}}
+      else state.entries.push({id:uid(),date:dd,created:now,updated:now,title:dr2.title.trim(),text:dr2.text.replace(/\s+$/,""),tags:dr2.tags});
+      state.ui.draft=null;state.ui.date=dd;save();render();toast("保存了");break;}
+    case "cancelDraft":{var dr3=state.ui.draft;
+      if(dr3&&!dr3.id&&dr3.text.trim()&&!confirm("这段还没保存，确定不要了吗？"))break;
+      state.ui.draft=null;save();render();break;}
+    case "delEntry":if(!confirm("删掉这一段？删了就找不回来了。"))break;
+      state.entries=state.entries.filter(function(e){return e.id!==state.ui.draft.id;});state.ui.draft=null;save();render();break;
+    case "open":state.ui.open[id]=1;save();render();break;
+    case "mon":{var mk=state.ui.month||todayKey().slice(0,7),n=+b.getAttribute("data-n");
+      if(!n)state.ui.month=todayKey().slice(0,7);
+      else{var x=new Date(+mk.slice(0,4),+mk.slice(5,7)-1+n,1);state.ui.month=x.getFullYear()+"-"+pad(x.getMonth()+1);}
+      save();render();break;}
+    case "wk":{var n2=+b.getAttribute("data-n"),cur=state.ui.week||weekStart(todayKey());
+      state.ui.week=n2?dk(addDays(pd(cur),7*n2)):weekStart(todayKey());
+      if(state.ui.week>weekStart(todayKey()))state.ui.week=weekStart(todayKey());save();render();break;}
+    case "rand":{var L=state.entries;if(!L.length)break;var pick=L[Math.floor(Math.random()*L.length)];
+      if(L.length>1)while(pick.id===state.ui.rand)pick=L[Math.floor(Math.random()*L.length)];
+      state.ui.rand=pick.id;save();render();break;}
+    case "followDone":state.followDone[id]=1;save();render();toast("收起来了");break;
+    case "qtag":{var t2=b.getAttribute("data-t");state.ui.qtag=state.ui.qtag===t2?"":t2;save();
+      document.querySelectorAll('[data-act="qtag"]').forEach(function(c){c.setAttribute("data-on",c.getAttribute("data-t")===state.ui.qtag?1:0);});
+      runSearch();break;}
+    case "coverToggle":state.meta.cover=state.meta.cover===false;save();render();break;
+    case "copyGroups":copyText(groupsPrompt());break;
+    case "export":exportData();render();break;
+    case "import":document.getElementById("importFile").click();break;
+    case "wipe":if(confirm("清空全部日记？建议先导出备份。")&&confirm("真的清空？清空后找不回来。")){
+      var keepExport=state.meta.lastExport;state=blank();state.meta.seeded=true;state.meta.lastExport=keepExport;state.meta.firstOpen=Date.now();state.ui.tab="settings";save();render();}break;
+  }
+});
+
+function grow(el){var y=window.scrollY;el.style.height="auto";el.style.height=el.scrollHeight+2+"px";window.scrollTo(0,y);}
+document.addEventListener("input",function(ev){
+  var el=ev.target,f=el.getAttribute("data-f");
+  if(el.classList&&el.classList.contains("grow"))grow(el);
+  if(f){day(state.ui.date)[f]=el.value;save();return;}
+  var d=el.getAttribute("data-d");
+  if(d==="date")return;
+  if(d&&state.ui.draft){state.ui.draft[d]=el.value;save();
+    if(d==="text"||d==="title"){clearTimeout(window.__tg);window.__tg=setTimeout(function(){var tb=document.getElementById("tagbox");if(tb&&state.ui.draft)tb.innerHTML=tagChips(state.ui.draft);},400);}
+    return;}
+  var r=el.getAttribute("data-rev");
+  if(r){var wk=el.getAttribute("data-wk");state.reviews[wk]=state.reviews[wk]||{};state.reviews[wk][r]=el.value;save();return;}
+  var s=el.getAttribute("data-s");
+  if(s){state.settings[s]=el.value;save();return;}
+  if(el.id==="q"){state.ui.q=el.value;save();clearTimeout(window.__qs);window.__qs=setTimeout(runSearch,150);}
+});
+
+document.addEventListener("change",function(ev){var el=ev.target;if(el.getAttribute("data-d")==="date"&&state.ui.draft&&/^\d{4}-\d{2}-\d{2}$/.test(el.value)){state.ui.draft.date=el.value;state.ui.date=el.value;save();render();}});
+document.getElementById("importFile").addEventListener("change",function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var s=JSON.parse(r.result);
+      if(!s||!Array.isArray(s.entries)||typeof s.days!=="object")throw 0;
+      if(!confirm("用这个备份替换现在的全部记录？"))return;
+      localStorage.setItem(KEY,JSON.stringify(s));state=load();state.meta.seeded=true;state.ui.tab="today";state.ui.date=todayKey();save();render();toast("导入好了");
+    }catch(x){toast("这个文件不是 Trace 的备份");}
+    e.target.value="";
+  };
+  r.readAsText(f);
+});
+
+/* ---------- 启动 ---------- */
+state=load();
+if(!state.meta.seeded)seed();
+if(!state.meta.firstOpen)state.meta.firstOpen=Date.now();
+var cover=document.getElementById("cover");
+function showCover(){if(state.meta.cover!==false)cover.hidden=false;}
+cover.addEventListener("click",function(){cover.hidden=true;});
+showCover();
+var lastDay=todayKey();
+if(!state.ui.date||state.ui.date>lastDay)state.ui.date=lastDay;
+save();render();
+function rollover(){
+  var t=todayKey();if(t===lastDay)return;
+  if(state.ui.date===lastDay)state.ui.date=t;
+  lastDay=t;save();render();
+}
+document.addEventListener("visibilitychange",function(){if(document.hidden)showCover();else rollover();});
+setInterval(function(){if(!document.hidden)rollover();},60000);
+window.addEventListener("beforeunload",save);
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){
+  try{
+    var sw="self.addEventListener('install',function(e){self.skipWaiting()});"+
+           "self.addEventListener('fetch',function(e){e.respondWith(fetch(e.request).catch(function(){return caches.match(e.request)}))});";
+    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:"text/javascript"}))).catch(function(){});
+  }catch(e){}
+}
+})();
+</script>
+</body>
+</html>
